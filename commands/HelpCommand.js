@@ -6,7 +6,8 @@ class HelpCommand extends Command {
         super({
             name: "help",
             description: "Shows a list of commands, or a list of commands in a category or a specific command.",
-            usage: "help [command | category]"
+            usage: "help [command | category]",
+            category: "util"
         })
     }
     async run(msg, args, Client) {
