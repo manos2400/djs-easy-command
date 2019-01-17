@@ -70,6 +70,7 @@ class Handler {
             .forEach(nestedDir => fs.readdirSync(directory + nestedDir)
             .forEach(f => commands.push(`${nestedDir}/${f}`)))
         commands = commands.filter(f => f.endsWith('.js'))
+        if (commands.length < 1) return new Error(`'${directory}' has no commands in it.`)
 
         for (const file of commands) {
             let command = require(directory + file)
