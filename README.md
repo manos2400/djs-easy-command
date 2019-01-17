@@ -16,33 +16,34 @@ const Discord = require('discord.js');
 const Client = new Discord.Client();
 const { Handler } = require('djs-command-handler');
 Client.Handler = new Handler(Client, {
-  directory: `${__dirname}/commands/`,
+	directory: `${__dirname}/commands/`,
 	prefixes: [ '!', '!!' ],
-	owners: [ '289232137570222083' ],
-  disabled: []
+  	owners: [ '289232137570222083' ],
+  	disabled: []
 });
+Client.login('token')
 ```
 
-2. Now create the commands folder and a command inside of it, we're going to add this to it. All of the options aren't required but you do need to have the name else it'll stop the bot with an error saying the command doesn't have a name.
+2. Now create the commands folder in the bot directory and a command inside of it, we're going to add this to it. All of the options aren't required but you do need to have the name else it'll stop the bot with an error saying the command doesn't have a name.
 
 ```js
 const { Command } = require('djs-command-handler')
 class TestCommand extends Command {
-  constructor(){
-    super({
-      name: 'test',
-      aliases: [ 'testing' ],
-      description: 'A test command',
-      category: 'fun',
-      usage: 'test',
-      owner: false,
-      nsfw: false,
-      disabled: false
-    })
-  }
-  async run(msg, args, Client) {
-    return msg.reply('testing!')
-  }
+	constructor(){
+		super({
+			name: 'test',
+			aliases: [ 'testing' ],
+			description: 'A test command',
+			category: 'fun',
+			usage: 'test',
+			owner: false,
+			nsfw: false,
+			disabled: false
+		})
+	}
+	async run(msg, args, Client) {
+		return msg.reply('testing!')
+	}
 }
 module.exports = PingCommand
 ```
