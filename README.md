@@ -18,8 +18,8 @@ const { Handler } = require('djs-easy-command');
 Client.Handler = new Handler(Client, {
 	directory: `${__dirname}/commands/`,
 	prefixes: [ '!', '!!' ],
-  	owners: [ '289232137570222083' ],
-  	disabled: []
+	owners: [ '289232137570222083' ],
+	disabled: []
 });
 Client.login('token')
 ```
