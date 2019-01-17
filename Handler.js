@@ -75,6 +75,7 @@ class Handler {
         for (const file of commands) {
             let command = require(directory + file)
             command = new command()
+            if (!command.getName()) return new Error(`'${file}' doesn't have a name.`)
             this.Client.commands.set(command.getName(), command)
             for (const alias of command.getAliases()) {
                 this.Client.aliases.set(alias, command.getName())
