@@ -1,10 +1,10 @@
-# djs-command-handler
+# djs-easy-command
 > A simple and easy to use Discord.js Command Handler
 
 ## Installation
 
 ```sh
-npm install djs-command-handler
+npm install djs-easy-command
 ```
 
 ## Setup
@@ -14,7 +14,7 @@ npm install djs-command-handler
 ```js
 const Discord = require('discord.js');
 const Client = new Discord.Client();
-const { Handler } = require('djs-command-handler');
+const { Handler } = require('djs-easy-command');
 Client.Handler = new Handler(Client, {
 	directory: `${__dirname}/commands/`,
 	prefixes: [ '!', '!!' ],
@@ -27,7 +27,7 @@ Client.login('token')
 2. Now create the commands folder in the bot directory and a command inside of it, we're going to add this to it. All of the options aren't required but you do need to have the name else it'll stop the bot with an error saying the command doesn't have a name.
 
 ```js
-const { Command } = require('djs-command-handler')
+const { Command } = require('djs-easy-command')
 class TestCommand extends Command {
 	constructor(){
 		super({
