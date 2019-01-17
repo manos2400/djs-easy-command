@@ -1,4 +1,4 @@
-const { Command } = require('djs-commands')
+const Command = require('../Command.js')
 const util = require('util')
 const terminal = require('node-cmd')
 

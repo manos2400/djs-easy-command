@@ -1,4 +1,4 @@
-const { Command } = require('djs-commands')
+const Command = require('../Command.js')
 const fetch = require('node-fetch')
 
 class PingCommand extends Command {
@@ -11,7 +11,7 @@ class PingCommand extends Command {
 	}
 	async run(msg, args, Client) {
 		new Promise((resolve, reject) => {
-			const start = Daate.now()
+			const start = Date.now()
 			fetch('https://discordapp.com/api/v6/channels/${msg.channel.id}/typing', {
 				method: "post",
 				headers: {

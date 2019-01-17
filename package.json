@@ -1,5 +1,5 @@
 {
-  "name": "djs-command-handler",
+  "name": "djs-easy-command",
   "version": "1.0.0",
   "description": "A simple and easy to use Discord.js Command Handler",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/WarHammer414/djs-command-handler.git"
+    "url": "git+https://github.com/WarHammer414/djs-easy-command.git"
   },
   "keywords": [
     "discord",
@@ -21,7 +21,7 @@
   "author": "WarHammer414",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/WarHammer414/djs-command-handler/issues"
+    "url": "https://github.com/WarHammer414/djs-easy-command/issues"
   },
-  "homepage": "https://github.com/WarHammer414/djs-command-handler#readme"
+  "homepage": "https://github.com/WarHammer414/djs-easy-command#readme"
 }
