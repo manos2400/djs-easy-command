@@ -48,5 +48,5 @@ class TestCommand extends Command {
 module.exports = PingCommand
 ```
 
-3. That's it!, your all done. Additionally there's default commands, eval, help, and ping, which are only usable by the owner(s).
+3. That's it!, your all done. Additionally there's default commands, eval, help, and ping, eval is only usable by the owner(s).
 
