@@ -1,4 +1,4 @@
-const { Command } = require('djs-commands')
+const Command = require('../Command.js')
 const fetch = require('node-fetch')
 
 class PingCommand extends Command {
