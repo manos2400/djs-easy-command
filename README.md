@@ -45,7 +45,7 @@ class TestCommand extends Command {
 		return msg.reply('testing!')
 	}
 }
-module.exports = PingCommand
+module.exports = TestCommand
 ```
 
 3. That's it!, your all done. Additionally there's default commands, eval, help, and ping, eval is only usable by the owner(s).
