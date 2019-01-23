@@ -1,6 +1,6 @@
 {
   "name": "djs-easy-command",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A simple and easy to use Discord.js Command Handler",
   "main": "index.js",
   "scripts": {
