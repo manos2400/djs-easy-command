@@ -27,7 +27,6 @@ class Handler {
         this.loadDeveloperCommands()
         this.Client.db.find({}, async (err, data) => {
             data.forEach(d => {
-                console.log(d)
                 if (d) this.Client.guildPrefixes.set(d.id, d.prefix)
             })
         })
