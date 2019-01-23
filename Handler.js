@@ -1,8 +1,11 @@
 const { Collection } = require('discord.js')
 const fs = require('fs')
+const DB = require('nedb')
 class Handler {
     constructor(Client, data = {}) {
         this.Client = Client
+        this.Client.db = new DB({ filename: './main.db', autoload: true })
+        this.Client.guildPrefixes = new Collection()
         if (!this.Client) return new Error('Client must not be empty')
         if (!data.directory) return new Error('Directory must not be empty')
         if (!data.prefixes) return new Error('Prefix must not be empty')
@@ -22,13 +25,20 @@ class Handler {
         this.Client.disabled = data.disabled
         this.loadDefaultCommands(data.directory)
         this.loadDeveloperCommands()
+        this.Client.db.find({}, async (err, data) => {
+            data.forEach(d => {
+                console.log(d)
+                if (d) this.Client.guildPrefixes.set(d.id, d.prefix)
+            })
+        })
         Client.on('message', this._message.bind(this))
     }
 
     async _message(msg) {
         if (msg.author.bot) return
         let prefix = false
-        for (const Prefix of this.Client.prefixes) {
+        let prefixes = [this.Client.guildPrefixes.get(msg.guild.id) || null].concat(this.Client.prefixes)
+        for (const Prefix of prefixes) {
             if (msg.content.startsWith(Prefix)) prefix = Prefix
         }
         if (!msg.content.startsWith(prefix) || !prefix) return

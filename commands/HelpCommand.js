@@ -13,8 +13,15 @@ class HelpCommand extends Command {
     async run(msg, args, Client) {
         let embed = new RichEmbed()
         let categories
-        if (Client.owners && Client.owners.includes(msg.author.id)) categories = Client.commands.map(command => command.getCategory()).filter(c => ![null].includes(c)).sort();
-        else categories = Client.commands.map(command => command.getCategory()).filter(c => ![null, 'owner'].includes(c)).sort();
+        if (Client.owners && Client.owners.includes(msg.author.id)) {
+            categories = Client.commands.map(command => command.getCategory())
+                .reduce((a, b) => { if (a.indexOf(b) < 0) a.push(b); return a }, [])
+                .filter(c => ![null].includes(c)).sort()
+        } else {
+            categories = Client.commands.map(command => command.getCategory())
+                .reduce((a, b) => { if (a.indexOf(b) < 0) a.push(b); return a }, [])
+                .filter(c => ![null, 'owner'].includes(c)).sort()
+        }
         let commandsSize = 0
         if (!args[0]) {
             embed.setAuthor('Command list', msg.author.displayAvatarURL)
