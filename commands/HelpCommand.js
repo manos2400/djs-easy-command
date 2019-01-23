@@ -33,13 +33,13 @@ class HelpCommand extends Command {
                 embed.addField(`${category.toUpperCase().slice(0, 1) + category.slice(1, category.length)} [ ${commands.length} ]`, `\`${commands.sort().join('`, `')}\``)
             })
             embed.setFooter(`Total commands: ${commandsSize}`)
-            return msg.channel.send(embed)
+            return msg.channel.send({ embed: embed })
         } else if (args && categories.includes(args[0])) {
             let commands = Client.commands.filter(command => command.getCategory() == args[0].toLowerCase() && !Client.disabled.includes(command.getName()))
             commands = commands.map(c => c.getName())
             embed.setAuthor(`Commands for category: ${args[0].toUpperCase().slice(0, 1) + args[0].toLowerCase().slice(1, args[0].length)}`, msg.author.displayAvatarURL)
             embed.setDescription(`\`${commands.sort().join('`, `')}\``)
-            return msg.channel.send(embed)
+            return msg.channel.send({ embed: embed })
         } else {
             let command = Client.Handler.getCommand(args[0])
             if (command.error || Client.disabled.includes(command.getName())) return msg.channel.send('I can\'t seem to find that command.')
@@ -47,7 +47,7 @@ class HelpCommand extends Command {
             embed.setDescription(command.getDescription())
             if (command.getAliases().length > 0) embed.addField('Aliases:', `\`${command.getAliases().join('`, `')}\``)
             if (command.getUsage() != null) embed.addField('Usage:', command.getUsage())
-            return msg.channel.send(embed)
+            return msg.channel.send({ embed: embed })
         }
     }
 }
