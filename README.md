@@ -38,7 +38,8 @@ class TestCommand extends Command {
 			usage: 'test',
 			owner: false,
 			nsfw: false,
-			disabled: false
+			disabled: false,
+			permission: 'ADMINISTRATOR' //You can use any discord permission you want to be required to use that command
 		})
 	}
 	async run(msg, args, Client) {
