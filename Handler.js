@@ -1,6 +1,7 @@
 const { Collection } = require('discord.js')
 const fs = require('fs')
 const DB = require('nedb')
+const chalk = require('chalk')
 class Handler {
     constructor(Client, data = {}) {
         this.Client = Client
@@ -47,6 +48,7 @@ class Handler {
         if (command.error) return
         if (command.isOwner() && (!this.Client.owners || !this.Client.owners.includes(msg.author.id))) return msg.reply('You have no permission to use this!')
         if (command.isNSFW() && !msg.channel.nsfw) return msg.reply('This command is marked as NSFW, please use it in a NSFW channel.')
+        if(command.getPermission() && !msg.member.hasPermission(command.getPermission())) return msg.channel.send(`${chatPrefix} **»** You lack the permission \`\`${command.getPermission()}\`\`.`) 
         try {
             command.run(msg, args, msg.client)
         } catch (err) {
@@ -67,6 +69,8 @@ class Handler {
             let command = require(__dirname + '/commands/' + file)
             command = new command()
             this.Client.commands.set(command.getName(), command)
+            console.log(chalk.yellow.bold(`   ${file.slice(0, -10)} has been loaded !`))
+            console.log(chalk.blue.strikethrough('--------------------------------------------'))
             for (const alias of command.getAliases()) {
                 this.Client.aliases.set(alias, command.getName())
             }
@@ -74,6 +78,8 @@ class Handler {
     }
 
     loadDefaultCommands(directory) {
+        console.log(chalk.yellow.inverse('              LOADING COMMANDS              '));
+        console.log(chalk.blue.strikethrough('--------------------------------------------'));
         let commands = fs.readdirSync(directory)
         commands.filter(f => fs.statSync(directory + f).isDirectory())
             .forEach(nestedDir => fs.readdirSync(directory + nestedDir)
@@ -89,6 +95,8 @@ class Handler {
             for (const alias of command.getAliases()) {
                 this.Client.aliases.set(alias, command.getName())
             }
+            console.log(chalk.yellow.bold(`   ${file.slice(0, -3)} has been loaded !`))
+            console.log(chalk.blue.strikethrough('--------------------------------------------'))
         }
     }
 }

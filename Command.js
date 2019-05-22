@@ -8,6 +8,7 @@ class Command {
         this.owner = options.owner || false
         this.nsfw = options.nsfw || false
         this.disabled = options.disabled || false
+        this.permission = options.permission || null
     }
     async run(msg, args, Client) {
 
@@ -43,6 +44,10 @@ class Command {
 
     isDisabled() {
         return this.disabled
+    }
+
+    getPermission() {
+        return this.permission
     }
 }
 
